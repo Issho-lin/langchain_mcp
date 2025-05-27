@@ -1,0 +1,30 @@
+{
+  "name": "agent",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node index.ts",
+    "local": "ts-node test.ts",
+    "serve": "ts-node server/index.ts"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/community": "^0.3.41",
+    "@langchain/core": "^0.3.49",
+    "@langchain/langgraph": "^0.2.73",
+    "@langchain/mcp-adapters": "^0.4.5",
+    "@langchain/openai": "^0.5.7",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "faiss-node": "^0.5.1",
+    "langchain": "^0.3.24",
+    "openai": "^4.103.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

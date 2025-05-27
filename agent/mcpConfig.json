@@ -1,0 +1,16 @@
+{
+    "mcpServers": {
+        "weather": {
+            "command": "python",
+            "args": [
+                "../mcpServer/weather.py"
+            ]
+        },
+        "news": {
+            "command": "python",
+            "args": [
+                "../mcpServer/news.py"
+            ]
+        }
+    }
+}

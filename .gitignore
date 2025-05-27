@@ -1,0 +1,5 @@
+.env
+# Node.js
+node_modules
+
+__pycache__

@@ -9,6 +9,7 @@ Copyright (c) 2025 by 智慧空间研究院/金地空间科技, All Rights Reser
 '''
 from fastmcp import FastMCP
 import requests
+import os
 
 mcp = FastMCP('查询某个地区的天气预报')
 
@@ -19,7 +20,9 @@ def get_weather(location: str) -> str:
     :param location: 要查询的地区
     :return: 查询的结果
     """
-    api_key = '9ffeb028648b13888b743927a941ed15'
+    # api_key = '9ffeb028648b13888b743927a941ed15'
+
+    api_key = os.environ.get('api_key')
 
     city_response = requests.get(f"https://restapi.amap.com/v3/geocode/geo?address={location}&key={api_key}")
     city_result = city_response.json()

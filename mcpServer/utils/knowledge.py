@@ -14,7 +14,11 @@ from langchain_openai import ChatOpenAI
 from langchain.retrievers.document_compressors.chain_extract import LLMChainExtractor
 from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnableSequence, RunnableLambda, RunnablePassthrough
+from langchain_core.runnables import (
+    RunnableSequence,
+    RunnableLambda,
+    RunnablePassthrough,
+)
 from langchain_core.output_parsers import StrOutputParser
 import os
 
@@ -28,10 +32,10 @@ TEMPLATE = """
 """
 
 
-def search(directory: str, question: str):
+def search_knowledge(directory: str, question: str):
     """
     搜索知识库
-    :param directory: 知识库路径
+    :param directory: 知识库名称
     :param question: 问题
     :return: 搜索的结果
     """
@@ -63,27 +67,26 @@ def search(directory: str, question: str):
     )
     # retriever = vector_db.as_retriever(search_kwargs={"k": 3})
 
-    convert_docs_to_string = lambda docs: ''.join([f'{doc.page_content}\n' for doc in docs])
+    convert_docs_to_string = lambda docs: "".join(
+        [f"{doc.page_content}\n" for doc in docs]
+    )
 
     prompt = ChatPromptTemplate.from_template(template=TEMPLATE)
 
     retriever_chain = retriever | RunnableLambda(convert_docs_to_string)
 
     def input_to_context(input):
-        return { 'question': input, 'context': retriever_chain.invoke(input=input) }
+        return {"question": input, "context": retriever_chain.invoke(input=input)}
 
     rag_chain = RunnableSequence(
         first=RunnableLambda(input_to_context),
         middle=[
-            RunnablePassthrough(
-                func=lambda x: print(f'{x['context']}\n')
-            ),
+            RunnablePassthrough(func=lambda x: print(f"{x['context']}\n")),
             prompt,
             llm,
         ],
         last=StrOutputParser(),
     )
-
 
     res = rag_chain.invoke(input=question)
 
@@ -96,4 +99,4 @@ def search(directory: str, question: str):
     return res
 
 
-search(directory="../db/sport_db", question="全息战术跑怎么走")
+# search_knowledge(directory="../db/sport_db", question="全息战术跑怎么走")

@@ -2,7 +2,7 @@
  * @Author: linqibin
  * @Date: 2025-05-27 09:17:09
  * @LastEditors: linqibin
- * @LastEditTime: 2025-06-24 09:20:59
+ * @LastEditTime: 2025-06-25 11:43:14
  * @Description:
  *
  * Copyright (c) 2025 by 智慧空间研究院/金地空间科技, All Rights Reserved.
@@ -54,12 +54,16 @@ export async function chat(
     { streamMode: "messages" }
   );
   for await (const [token] of stream) {
-    console.log(token);
+    // console.log(token);
+    // if (token.content) {
+    //   console.log(token.content + '\n');
+    // }
     if (token.content && token.response_metadata?.usage) {
+      console.log(token.content);
       onSuccess(token.content);
     }
   }
   await client.close();
 }
 
-chat("这里有没有山地挑战的项目", () => {});
+chat("我想了解一下园区内有哪些植物", () => {});

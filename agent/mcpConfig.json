@@ -9,10 +9,10 @@
                 "api_key": "9ffeb028648b13888b743927a941ed15"
             }
         },
-        "sports": {
+        "rag": {
             "command": "python",
             "args": [
-                "../mcpServer/sports.py"
+                "../mcpServer/rag.py"
             ]
         }
     }

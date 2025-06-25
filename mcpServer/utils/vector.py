@@ -2,7 +2,7 @@
 Author: linqibin
 Date: 2025-06-24 16:45:57
 LastEditors: linqibin
-LastEditTime: 2025-06-25 09:44:03
+LastEditTime: 2025-06-25 11:37:49
 Description: 
 
 Copyright (c) 2025 by 智慧空间研究院/金地空间科技, All Rights Reserved. 
@@ -15,9 +15,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 import os
 
-file_name = 'sport'
 
-def build_vector_db():
+
+def build_vector_db(file_name: str):
     """构建向量数据库"""
     loader = TextLoader(f'../documents/{file_name}.md')
     docs = loader.load()
@@ -59,4 +59,6 @@ def build_vector_db():
 #     import tracemalloc
 #     tracemalloc.start()
     
-build_vector_db()
+build_vector_db(file_name='sport')
+build_vector_db(file_name='amusement')
+build_vector_db(file_name='biology')

@@ -9,25 +9,11 @@
                 "api_key": "9ffeb028648b13888b743927a941ed15"
             }
         },
-        "news": {
+        "sports": {
             "command": "python",
             "args": [
-                "../mcpServer/news.py"
-            ],
-            "env": {
-                "api_key": "185032b32dc536d633129d221f7f7be48629f0e4569138241d817449166e21ca"
-            }
-        },
-        "rephrase": {
-            "command": "python",
-            "args": [
-                "../mcpServer/rephrase.py"
-            ],
-            "env": {
-                "api_key": "sk-b72b74abd3f541a08b68dc756de84958",
-                "model": "qwen-turbo-1101",
-                "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1"
-            }
+                "../mcpServer/sports.py"
+            ]
         }
     }
 }

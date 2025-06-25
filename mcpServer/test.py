@@ -10,11 +10,11 @@ Copyright (c) 2025 by 智慧空间研究院/金地空间科技, All Rights Reser
 import asyncio
 from  fastmcp import Client
 
-client = Client("rephrase.py")
+client = Client("sports.py")
 
-async def call_tool(prompt: str):
+async def call_tool(sport: str):
     async with client:
-        result = await client.call_tool("rephrase_prompt", { "prompt": prompt })
+        result = await client.call_tool("get_sports", { "sport": sport })
         print(result[0].text)
 
-asyncio.run(call_tool('北京天气'))
+asyncio.run(call_tool('减肥'))

@@ -2,7 +2,7 @@
  * @Author: linqibin
  * @Date: 2025-05-27 09:17:09
  * @LastEditors: linqibin
- * @LastEditTime: 2025-05-28 11:56:25
+ * @LastEditTime: 2025-06-24 09:20:59
  * @Description:
  *
  * Copyright (c) 2025 by 智慧空间研究院/金地空间科技, All Rights Reserved.
@@ -15,6 +15,7 @@ import fs from "fs";
 import path from "path";
 // import tools from "./tools";
 import "dotenv/config";
+import { SystemMessage } from "@langchain/core/messages";
 // import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 // 读取prompt.txt文件内容
@@ -26,10 +27,11 @@ console.log(prompt);
 // 在配置中使用读取的提示词
 const model = new ChatOpenAI({
   model: process.env.MODEL_NAME,
+  temperature: 0,
   configuration: {
     baseURL: process.env.BASE_URL,
     apiKey: process.env.OPENAI_API_KEY,
-  },
+  }
 });
 
 export async function chat(
@@ -54,11 +56,10 @@ export async function chat(
   for await (const [token] of stream) {
     console.log(token);
     if (token.content && token.response_metadata?.usage) {
-    //   console.log(token.content);
       onSuccess(token.content);
     }
   }
   await client.close();
 }
 
-chat("北京天气", () => {});
+chat("这里有没有山地挑战的项目", () => {});
